@@ -17,7 +17,14 @@ const exampleSongData = require('../data/songs');
  * @returns {string[]} An array of strings, all of which are song titles.
  */
 
-function getSongTitles(exampleSongData) {}
+function getSongTitles(exampleSongData) {
+  const songName = exampleSongData.reduce((acc,song)=>{
+    acc.push(song.title)
+    return acc;
+  },[])
+  return songName;
+}
+//console.log(getSongTitles(exampleSongData));
 
 /***********************************************************************/
 
@@ -32,7 +39,14 @@ function getSongTitles(exampleSongData) {}
  *  //> [ "Berlin Tsukin by Taiyo Ky", "Up by Sebastian Kamae", ... ]
  */
 
-function getSongDetails(exampleSongData) {}
+function getSongDetails(exampleSongData) {
+  const songByArtist = exampleSongData.reduce((acc, song)=>{
+    acc.push(`${song.title} by ${song.artist}`)
+    return acc;
+  }, [])
+  return songByArtist
+}
+//console.log(getSongDetails(exampleSongData))
 
 /***********************************************************************/
 
@@ -47,7 +61,17 @@ function getSongDetails(exampleSongData) {}
  *  //> [ { "Berlin Tsukin": "Taiyo Ky" }, { Up: "Sebastian Kamae" }, ... ]
  */
 
-function getTitleAndArtist(exampleSongData) {}
+function getTitleAndArtist(exampleSongData) {
+  const titleArtist = exampleSongData.reduce((acc, song)=>{
+    //!acc is an array
+    let obj = {}//! to push obj into acc
+    obj[song.title] = song.artist
+    acc.push(obj);
+    return acc;
+  },[]) //! empty array[] because, initializing... default value
+  return titleArtist
+}
+//console.log(getTitleAndArtist(exampleSongData));
 
 module.exports = {
   getSongTitles,

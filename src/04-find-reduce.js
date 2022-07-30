@@ -16,8 +16,14 @@ const exampleSongData = require('../data/songs');
  * @param {Object[]} songs - An array of songs. See the song data for more.
  * @returns {Object} A single object.
  */
-function findPinkElephantsByTimestreet(exampleSongData) {}
-
+function findPinkElephantsByTimestreet(exampleSongData) {
+  const findPink = exampleSongData.reduce((acc, song)=>{
+    if(song.title === "Pink Elephants") acc.push(song)
+    return acc;
+  }, [])
+  return findPink
+}
+//!console.log(findPinkElephantsByTimestreet(exampleSongData))
 /***********************************************************************/
 
 /**
@@ -26,7 +32,17 @@ function findPinkElephantsByTimestreet(exampleSongData) {}
  * @param {Object[]} songs - An array of songs. See the song data for more.
  * @returns {Object} A single object.
  */
-function findFirstSongUnderThreeMinutes(exampleSongData) {}
+function findFirstSongUnderThreeMinutes(exampleSongData) {
+  const threeUnder = exampleSongData.reduce((acc,song)=>{
+if (acc.title) return acc
+
+if(song.runtimeInSeconds < 180) acc = song
+return acc
+
+}, {})
+return threeUnder;
+}
+//!console.log(findFirstSongUnderThreeMinutes(exampleSongData))
 
 /***********************************************************************/
 
@@ -36,7 +52,15 @@ function findFirstSongUnderThreeMinutes(exampleSongData) {}
  * @param {Object[]} songs - An array of songs. See the song data for more.
  * @returns {Object} A single object.
  */
-function findFirstTitleTrack(exampleSongData) {}
+function findFirstTitleTrack(exampleSongData) {
+  const firstTrack = exampleSongData.reduce((acc,song)=>{
+if(acc.album) return acc;
+   if(song.title === song.album) acc = song
+   return acc
+  }, {})
+  return firstTrack
+ }
+//!console.log(findFirstTitleTrack(exampleSongData))
 
 module.exports = {
   findPinkElephantsByTimestreet,

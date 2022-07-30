@@ -16,7 +16,16 @@ const exampleSongData = require('../data/songs');
  * @param {Object[]} songs - An array of songs. See the song data for more.
  * @returns {boolean}
  */
-function allSongsAreOverTwoMinutes(exampleSongData) {}
+function allSongsAreOverTwoMinutes(exampleSongData) {
+  const overTwo = exampleSongData.reduce((acc, song)=> {
+    if(song.runtimeInSeconds > 120) acc = false
+
+    if(song.runtimeInSeconds < 120) acc = true
+    return acc
+  })
+  return overTwo
+}
+//!console.log(allSongsAreOverTwoMinutes(exampleSongData))
 
 /***********************************************************************/
 
@@ -26,8 +35,16 @@ function allSongsAreOverTwoMinutes(exampleSongData) {}
  * @param {Object[]} songs - An array of songs. See the song data for more.
  * @returns {boolean}
  */
-function anySongIsOverFourMinutes(exampleSongData) {}
+function anySongIsOverFourMinutes(exampleSongData) {
+const overFour = exampleSongData.reduce((acc, song)=>{
+  if(song.runtimeInSeconds > 240) acc = true
 
+  if(song.runtimeInSeconds < 240) acc = false;
+  return acc
+})
+return overFour
+}
+//!console.log(anySongIsOverFourMinutes(exampleSongData))
 /***********************************************************************/
 
 /**
@@ -37,7 +54,16 @@ function anySongIsOverFourMinutes(exampleSongData) {}
  * @returns {boolean} boolean true if there is a song in the array by the artist "Peanut".
  * Otherwise returning false
  */
-function anySongIsByPeanut(exampleSongData) {}
+function anySongIsByPeanut(exampleSongData) {
+  const byPeanut = exampleSongData.reduce((acc, song)=>{
+    if(!song.artist === "Peanut") acc = false
+
+    if(song.artist === "Peanut") acc = true
+    return acc; 
+  })
+  return byPeanut
+}
+//!console.log(anySongIsByPeanut(exampleSongData))
 
 module.exports = {
   allSongsAreOverTwoMinutes,

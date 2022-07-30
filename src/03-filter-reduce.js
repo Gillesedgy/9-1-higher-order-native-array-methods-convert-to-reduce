@@ -17,8 +17,15 @@ const exampleSongData = require('../data/songs');
  * @returns {Object[]} An array of objects.
  * You must use .reduce
  */
-function getSongsBySaib(exampleSongData) {}
-
+function getSongsBySaib(exampleSongData) {
+  const getSaib = exampleSongData.reduce((acc, song)=>{
+    if(song.artist === "Saib") acc.push(song)
+      return acc
+  },[])
+  return getSaib;
+}
+//console.log(getSongsBySaib(exampleSongData));
+    
 /***********************************************************************/
 
 /**
@@ -29,8 +36,14 @@ function getSongsBySaib(exampleSongData) {}
  * You must use .reduce
  */
 
-function getSongsOverThreeMinutes(exampleSongData) {}
-
+function getSongsOverThreeMinutes(exampleSongData) {
+const overThree = exampleSongData.reduce((acc, song)=>{
+if(song.runtimeInSeconds > 180) acc.push(song)
+return acc;
+},[])
+return overThree
+}
+//console.log(getSongsOverThreeMinutes(exampleSongData));
 /***********************************************************************/
 
 /**
@@ -41,7 +54,14 @@ function getSongsOverThreeMinutes(exampleSongData) {}
  * You must use .reduce
  */
 
-function getTitleTracks(exampleSongData) {}
+function getTitleTracks(exampleSongData) {
+const similarName = exampleSongData.reduce((acc,song)=>{
+  if(song.title === song.album) acc.push(song)
+  return acc;
+}, []);
+return similarName;
+}
+//console.group(getTitleTracks(exampleSongData))
 
 module.exports = {
   getSongsBySaib,

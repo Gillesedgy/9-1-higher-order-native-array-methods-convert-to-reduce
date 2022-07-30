@@ -1,3 +1,4 @@
+const songs = require('../data/songs');
 const exampleSongData = require('../data/songs');
 const exampleVoteData = require('../data/votes');
 
@@ -34,13 +35,17 @@ const exampleVoteData = require('../data/votes');
  * > 1680
  */
 
-function allSongsRuntimeSum(exampleSongData) {}
-
+function allSongsRuntimeSum(exampleSongData) {
+  
+  const runTime = exampleSongData.reduce((sum, song) => sum + song.runtimeInSeconds, 0)
+  //!0, set the starting point
+  return runTime
+}
 // UNCOMMENT THE CONSOLE.LOG LINE BELOW TO TEST
 // run `node src/01-reduce-no-tests.js`
 // look in terminal to see if you match the example
 // when you are done, comment line again
-// console.log(allSongsRuntimeSum(exampleSongData));
+ //console.log(allSongsRuntimeSum(exampleSongData));
 
 /***********************************************************************/
 
@@ -62,14 +67,26 @@ function allSongsRuntimeSum(exampleSongData) {}
   }
  */
 
-function getMaxRuntime(exampleSongData) {}
+function getMaxRuntime(exampleSongData) {
+const maxTime = songs.reduce((accumulator, element) =>{
+  if(accumulator.runtimeInSeconds > element.runtimeInSeconds){
+    return accumulator 
+  }
+  return element
+},0)
+return maxTime
+// const maxMax = exampleSongData.reduce((function(a,b){
+//   return Math.max(a.runtimeInSeconds, b.runtimeInSeconds),-Infinity})
+//   )
+//   return maxMax
+}
 
 // UNCOMMENT  THE CONSOLE.LOG LINE BELOW TO TEST
 // run `node src/01-reduce-no-tests.js`
 // look in terminal to see if you match the example
 // when you are done, comment line again
 
-// console.log(getMaxRuntime(exampleSongData));
+//console.log(getMaxRuntime(exampleSongData));
 
 /***********************************************************************/
 
@@ -92,11 +109,22 @@ function getMaxRuntime(exampleSongData) {}
 }
  */
 
-function countVotes(exampleVoteData) {}
+function countVotes(exampleVoteData) {
+  let voteCount = exampleVoteData.reduce((accumulator, element)=>{
+if(accumulator[element.vote]){
+  accumulator[element.vote] += 1;
+}
+else{
+  accumulator[element.vote] = 1;
+}
+return accumulator
+},{})
+return voteCount;
+}
 
 // UNCOMMENT THE CONSOLE.LOG LINE BELOW TO TEST
 // run `node src/01-reduce-no-tests.js`
 // look in terminal to see if you match the example
 // when you are done, comment line again
 
-// console.log(countVotes(exampleVoteData));
+ //console.log(countVotes(exampleVoteData));
